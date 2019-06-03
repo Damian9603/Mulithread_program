@@ -12,7 +12,6 @@ Ball::Ball()
     mutex.unlock();
     dead = true;
     time(&born);
-    lastHit= -1;
 }
 
 Ball::Ball(int a, int b)
@@ -41,7 +40,7 @@ void Ball::go()
     int wayY=directionY;                                //ilosc pol do poruszenia się w y
     while ((wayX!=0||wayY!=0)) //&& dead==false)             //dopóki kula nie wykonala wszystkich ruchów
     {
-        if(x==CONSOLE_SIZE_X)                           //jeżeli natrafi na krawędź konsoli to odbija się od niej i traci 1 hp
+        if(x==CONSOLE_SIZE_X)                           //jeżeli natrafi na krawędź konsoli to odbija się od niej
         {
             wayX*=(-1);
             directionX*=(-1);
@@ -134,22 +133,22 @@ void Ball::setDirectionY(int b)
 
 bool Ball::checkDead()
 {
+    //jezeli hp jest wieksze od 3 to kula nie żyje
     if(hp>3)
     {
         dead = true;
-        lastHit= -1;
         return true;
         
     }
     else
     {
+        //sprawdzenie czy kula nie umarla ze starosci
         time_t now;
         time(&now);
         if(now-born>LIFETIME)
         {
             dead=true;
             hp=4;
-            lastHit = -1;
             return true;
         }
     }
@@ -174,13 +173,8 @@ void Ball::setBorn(time_t t)
 
 void Ball::eat(int idx)
 {
-    lastHit=idx;
+    //ustawienie hp
     hp++;
-}
-
-int Ball::getLastHit()
-{
-    return lastHit;
 }
 
 void Ball::setID(int d)
@@ -190,8 +184,11 @@ void Ball::setID(int d)
 
 void Ball::eaten()
 {
+    //ustawienie hp na hp kuli zjedzonej
     hp=EATEN;
+    //wyrzucenie kuli poza terminal
     x=id;
     y=-1;
+    //ustawienie, ze kuli nie zyje
     dead=true;
 }

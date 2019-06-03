@@ -10,9 +10,8 @@ private:
     int directionY;                 //kierunek poruszania się kuli
     int hp;                         //aktualne hp kuli
     std::mutex mutex;               //mutex
-    bool dead;
-    time_t born;
-    int lastHit;
+    bool dead;                      //atrybut kuli mowiacy czy jest martwa
+    time_t born;                    //czas narodzin kuli
 public:
     Ball();
     Ball (int a, int b);
@@ -25,13 +24,12 @@ public:
     int getY();
     void setDirectionX(int a);
     void setDirectionY(int b);
-    bool checkDead();
+    bool checkDead();               //sprawdzanie czy wystapil warunek smierci kuli
     bool getDead();
     void setHP(int h);
     void setBorn(time_t t);
-    void eat(int idx);
-    int getLastHit();
+    void eat(int idx);              //metoda wywolywana po zjedzeniu kuli
     void setID(int d);
-    void eaten();
+    void eaten();                   //metoda wywolywana po byciu zjedzonym
 };
 

@@ -13,9 +13,8 @@ public:
     ~Ground();
     void Start();                           //rozpoczecie dzialania
     void DrawBalls(int times=INT32_MAX);    //rysowanie kulek
-    void kbhit();                           //funkcja sprawdzajaca czy nacisniety zostal jakikolwiek klawisz
-    void setBall(int num);
-    void checkHit();
+    void setBall(int num);                  //ustawienie wartości poczatkowych kulki
+    void checkHit();                        //sprawdzenie ktore kulki sie zderzyly ze soba
 };
 
 
