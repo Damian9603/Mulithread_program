@@ -1,0 +1,1 @@
+C++ program where balls are threads. They can eat other ball and dies after being eaten, eating 3 other balls or after 40 seconds of life. Balls bounce off terminal's borders. I learned about threads and C++ 14 and fact that all names in program should be written in english.
